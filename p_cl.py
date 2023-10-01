@@ -8,7 +8,7 @@ root.title("Emos's Clock")
 
 
 def time():
-    stri= strftime('%H:%M:%S %p')
+    stri= strftime('%H:%M:%S')
     lbl.config(text=stri)
     lbl.after(1000, time)
 
