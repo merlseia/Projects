@@ -5,11 +5,12 @@ import random
 while True:
     print("Enter your choice;\n 1- Rock \n 2- Paper\n 3- Scissors\n")
 
-    choice = int(input("Enter your choice: \n"))
+    choice = input("Enter your choice: \n")
 
-    while choice>3 or choice<1:
-        choice = int(input("please enter a valid choice"))
-
+    if choice not in ['1', '2', '3']:
+        print("Please enter a valid choice (1, 2, or 3).")
+        continue
+    choice=int(choice)
     if choice == 1:
         choice_name = "Rock"
     elif choice == 2:
@@ -61,7 +62,7 @@ while True:
         elif comp_choice==1:
             print ("Rock wins\nYou lost.")
 
-    print("Do you wanna play again? (y/n)")
+    print("for quit game enter q")
     ans = input()
-    if ans == "n":
+    if ans == "q":
         break
