@@ -1,8 +1,73 @@
-word_list = ["Monkey", "Cat", "Chicken", "Horse", "Shark", "Snake"]
-
 import random
+hangman_stages = [
+    """
+       --------
+       |      |
+              |
+              |
+              |
+              |
+    """,
+    """
+       --------
+       |      |
+       O      |
+              |
+              |
+              |
+    """,
+    """
+       --------
+       |      |
+       O      |
+       |      |
+              |
+              |
+    """,
+    """
+       --------
+       |      |
+       O      |
+      /|      |
+              |
+              |
+    """,
+    """
+       --------
+       |      |
+       O      |
+      /|\\     |
+              |
+              |
+    """,
+    """
+       --------
+       |      |
+       O      |
+      /|\\     |
+      /       |
+              |
+    """,
+    """
+       --------
+       |      |
+       O      |
+      /|\\     |
+      / \\     |
+              |
+    """
+]
 
+word_list = ["Monkey", "Cat", "Chicken", "Horse", "Shark", "Snake"]
 selected_word = random.choice(word_list).lower()
+guessed_letters = []
+incorrect_attempts = 0
+
+def display_hangman(incorrect_attempts):
+    print(hangman_stages[incorrect_attempts])
+
+
+
 
 def display_word(word, guessed_letters):
     displayed_word = ""
@@ -13,7 +78,8 @@ def display_word(word, guessed_letters):
             displayed_word += "_"
     return displayed_word
 
-guessed_letters = []
+
+
 
 while True:
     guessed_word = display_word(selected_word, guessed_letters)
@@ -37,4 +103,10 @@ while True:
     guessed_letters.append(guess)
 
     if guess not in selected_word:
+        incorrect_attempts += 1
         print("Tahmininiz yanlış.")
+        display_hangman(incorrect_attempts)
+
+    if incorrect_attempts == len(hangman_stages) - 1:
+        print("Adami astik! Doğru kelime: " + selected_word)
+        break
